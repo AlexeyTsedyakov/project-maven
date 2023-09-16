@@ -87,6 +87,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
+                            <outputDirectory>${project.build.directory}/dependency/</outputDirectory>
                             <includeScope>compile</includeScope>
                         </configuration>
                     </execution>
@@ -103,9 +104,11 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <mainClass>org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader</mainClass>
+                            <classpathPrefix>lib/</classpathPrefix>
                         </manifest>
                         <manifestEntries>
                             <Rsrc-Main-Class>com.javarush.games.racer.RacerGame</Rsrc-Main-Class>
+                            <Class-Path>./</Class-Path>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -136,7 +139,8 @@
 
         <resources>
             <resource>
-                <directory>${basedir}/target/dependency</directory>
+                <directory>${project.build.directory}/dependency</directory>
+                <targetPath>lib\</targetPath>
             </resource>
         </resources>
     </build>
